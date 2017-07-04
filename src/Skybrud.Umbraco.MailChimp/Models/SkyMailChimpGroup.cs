@@ -63,11 +63,15 @@ namespace Skybrud.Umbraco.MailChimp.Models
         /// <returns></returns>
         public static List<SkyMailChimpGroup> GetGroups(List<Grouping> groupings)
         {
+            if (groupings == null) return null;
+
             return groupings.Select(x => new SkyMailChimpGroup(x)).ToList();
         }
 
         public static List<SkyMailChimpGroup> GetGroups(List<InterestGrouping> groupings)
         {
+            if (groupings == null) return null;
+
             return groupings.Select(x => new SkyMailChimpGroup(x)).ToList();
         }
 

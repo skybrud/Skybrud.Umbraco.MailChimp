@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>René Pjengaard</authors>
+    <owners>René Pjengaard</owners>
+    <licenseUrl>https://github.com/skybrud/Skybrud.Umbraco.MailChimp/blob/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/skybrud/Skybrud.Umbraco.MailChimp</projectUrl>
+    <iconUrl>http://www.skybrud.dk/img/5431sk/icon/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <tags>Umbraco, MailChimp, Newsletter</tags>
+  </metadata>
+</package>

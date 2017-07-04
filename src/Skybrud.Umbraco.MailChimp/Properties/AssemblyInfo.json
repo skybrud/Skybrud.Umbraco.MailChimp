@@ -1,10 +1,10 @@
 {
   "title": "Skybrud.Umbraco.MailChimp",
-  "description": "Skybrud.Umbraco.MailChimp is a small package that makes it easy to subscribe/update your customers MailChimp subscribtions.",
+  "description": "Small NuGet package to help your customers subscribe/update their MailChimp subscriptions.",
   "company": "Skybrud.dk",
-  "product": "Skybrud.Umbraco.MailChimp",
-  "copyright": "Copyright © 2016",
-  "version": "0.5.0.0",
-  "informationalVersion": "0.5.0",
-  "fileVersion": "0.0.0.1"
+  "product": "Skybrud.MailChimp",
+  "copyright": "Copyright ©  2017",
+  "version": "0.5.2.0",
+  "informationalVersion": null,
+  "fileVersion": "0.5.2.0"
 }

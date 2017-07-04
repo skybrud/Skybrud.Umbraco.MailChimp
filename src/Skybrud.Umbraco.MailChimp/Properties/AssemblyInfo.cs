@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Skybrud.MailChimp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Skybrud.Umbraco.MailChimp")]
+[assembly: AssemblyDescription("Small NuGet package to help your customers subscribe/update their MailChimp subscriptions.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Skybrud.dk")]
 [assembly: AssemblyProduct("Skybrud.MailChimp")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.5.0.0")]
-[assembly: AssemblyFileVersion("0.5.0.0")]
+[assembly: AssemblyVersion("0.5.2.0")]
+[assembly: AssemblyFileVersion("0.5.2.0")]

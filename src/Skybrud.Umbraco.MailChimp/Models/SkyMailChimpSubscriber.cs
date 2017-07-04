@@ -20,6 +20,9 @@ namespace Skybrud.Umbraco.MailChimp.Models
         [JsonProperty("listName")]
         public string ListName { get; set; }
 
+        [JsonProperty("existingUser")]
+        public bool ExistingUser { get; set; }
+
         [JsonProperty("groups")]
         public List<SkyMailChimpGroup> Groups { get; set; }
 
@@ -36,15 +39,26 @@ namespace Skybrud.Umbraco.MailChimp.Models
             Groups = new List<SkyMailChimpGroup>();
         }
 
+        /// <summary>
+        /// Use to initiate new user
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="listinfo"></param>
+        /// <param name="groupings"></param>
         public SkyMailChimpSubscriber(string email, ListInfo listinfo, List<InterestGrouping> groupings = null)
         {
             Name = "";
             Email = email;
             ListId = listinfo.Id;
             ListName = listinfo.Name;
+            ExistingUser = false;
             Groups = groupings != null ? SkyMailChimpGroup.GetGroups(groupings) : null;
         }
 
+        /// <summary>
+        /// Use to initiate existing user
+        /// </summary>
+        /// <param name="subscriber"></param>
         public SkyMailChimpSubscriber(MemberInfo subscriber)
         {
             //fetching NAME merge from MailChimp
@@ -55,6 +69,7 @@ namespace Skybrud.Umbraco.MailChimp.Models
             Email = subscriber.Email;
             ListId = subscriber.ListId;
             ListName = subscriber.ListName;
+            ExistingUser = true;
             Groups = SkyMailChimpGroup.GetGroups(subscriber.MemberMergeInfo.Groupings);
         }
 
