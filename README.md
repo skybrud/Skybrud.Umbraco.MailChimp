@@ -13,13 +13,66 @@ If you have created or altered the default MailChimp merge-fields, you need to t
 ```csharp
 using MailChimp.Lists;
 
-namespace vejlekommune.Models.VejleKommuneWebsite.MailChimp
+namespace Customer.Models.Website.MailChimp
 {
     public class CustomMailChimpMergeModel : MergeVar
     {
         public string NAME { get; set; }
     }
 }
+```
+
+You also need to tell Skybrud.Umbraco.MailChimp what properties your submit form will send. Please remember to enherit from `MailChimpSignup` as shown below.
+
+```csharp
+using System.Net.Http;
+using Skybrud.Umbraco.MailChimp.Models;
+
+namespace Customer.Models.Website.MailChimp
+{
+    public class CustomMailChimpFormModel : MailChimpSignup
+    {
+        #region Properties
+        #endregion
+
+        #region Statics
+        public static CustomMailChimpFormModel GetModel(HttpRequestMessage request)
+        {
+            return SkyMailChimpHelper.ConvertToMailChimpSignupModel<CustomMailChimpFormModel>(request);
+        }
+        #endregion
+    }
+}
+```
+
+The deafult class you enherit from contains theese properties:
+
+```csharp
+#region Properties
+[JsonProperty("name")]
+public string Name { get; set; }
+
+[JsonProperty("email")]
+public string Email { get; set; }
+
+[JsonProperty("listid")]
+public string ListId { get; set; }
+
+[JsonProperty("listname")]
+public string ListName { get; set; }
+
+[JsonProperty("contextid")]
+public string ContextId { get; set; }
+
+[JsonProperty("existingUser")]
+public bool ExistingUser { get; set; }
+
+[JsonProperty("groups")]
+public List<SkyMailChimpGroup> Groups { get; set; }
+
+[JsonProperty("config")]
+public MailChimpOptions Config { get; set; }
+#endregion
 ```
 
 
