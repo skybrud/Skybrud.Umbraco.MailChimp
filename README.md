@@ -45,7 +45,7 @@ namespace Customer.Models.Website.MailChimp
 }
 ```
 
-The deafult class you enherit from contains theese properties:
+The deafult class you enherit from contains these properties:
 
 ```csharp
 #region Properties
@@ -77,6 +77,58 @@ public MailChimpOptions Config { get; set; }
 
 
 ### Controller
+You also need to create a controller to handle your api-call from the frontend. Here you can find an example:
+
+```csharp
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Web;
+using System.Web.Http;
+using MailChimp.Helper;
+using ServiceStack.Text;
+using Skybrud.Umbraco.MailChimp.Models;
+using Umbraco.Core.Logging;
+using Umbraco.Web.WebApi;
+using Customer.Models.Website.MailChimp;
+
+namespace Customer.Controllers.Api.MailChimp
+{
+    public class MailChimpSignupController : UmbracoApiController
+    {
+        [HttpPost]
+        public object SaveUpdate(HttpRequestMessage request)
+        {
+            try
+            {
+                // cast your custom mailchimp form model
+                CustomMailChimpFormModel mco = CustomMailChimpFormModel.GetModel(request);
+
+
+                // add your config model to the MailChimpFormModel
+                var config = new MailChimpOptions(true, "html", new CustomMailChimpMergeModel
+                {
+                    NAME = mco.Name
+                });
+                mco.AddConfig(config);
+
+                EmailParameter r = mco.SaveUpdateSubscriber(mco);
+
+                return Request.CreateResponse(r);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Error<MailChimpSignupController>("mailchimp error", ex);
+
+                return
+                    Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+    }
+}
+```
+
+Now you can post to this api, and Skybrud.Umbraco.MailChimp will save or update your subscriber.
 
 
 ## Umbraco Properties
@@ -86,6 +138,13 @@ public MailChimpOptions Config { get; set; }
 
 `skyMailChimpUpdateMailBody` - Overwrites default body for update profile e-mail ({updateLink})
 
+
+## MailChimp template
+If you want your subscribers to be able to ex. update their groups or name, you can add an update link in your MailChimp template.
+
+`<a href="https://customerdomain.com/news/newslettersignup/?email=*|EMAIL|*&amp;id=*|EMAIL_UID|*" mc:edit="std_update">Update your profile</a>`
+
+Remember to change domain + url, but leave the querystring.
 
 
 ## Updates
