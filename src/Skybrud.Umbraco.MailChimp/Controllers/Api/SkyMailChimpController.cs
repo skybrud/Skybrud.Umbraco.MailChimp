@@ -11,7 +11,6 @@ using MailChimp.Lists;
 using Skybrud.Umbraco.MailChimp.Integrations;
 using Skybrud.Umbraco.MailChimp.Models;
 using Skybrud.WebApi.Json;
-using umbraco.cms.presentation;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Web;
@@ -107,7 +106,7 @@ namespace Skybrud.Umbraco.MailChimp.Controllers.Api
                     else
                     {
                         // subscriberId missing, throw error
-                        return Request.CreateResponse(HttpStatusCode.Unauthorized);
+                        return Request.CreateResponse(HttpStatusCode.Unauthorized, new { email = email });
                     }
                 }
 
