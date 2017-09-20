@@ -134,6 +134,10 @@ Now you can post to this api, and Skybrud.Umbraco.MailChimp will save or update 
 ## Umbraco Properties
 `skyMailChimpApiKey` - API key from MailChimp (overwrites appsetting `mailchimpapi` in web.config)
 
+`skyMailChimpUpdateFromEmail` - Overwrites default from-mailaddress for update profile e-mail
+
+`skyMailChimpUpdateFromDisplayName` - Overwrites default displayname for update profile e-mail
+
 `skyMailChimpUpdateMailSubject` - Overwrites default subject for update profile e-mail
 
 `skyMailChimpUpdateMailBody` - Overwrites default body for update profile e-mail ({updateLink})
@@ -152,3 +156,6 @@ Remember to change domain + url, but leave the querystring.
 #### 0.5.3
 * Security added. You know need to have emailId from MailChimp to edit/update existing subscriber
 * Now you can send the subscriber a update-link
+
+#### 0.5.6
+* Added option for overwrite default from e-mail and display name (update mail)
