@@ -154,6 +154,8 @@ namespace Skybrud.Umbraco.MailChimp.Controllers.Api
                 // fetch settings from Umbraco
                 string subject = currentPage.GetPropertyValue<string>("skyMailChimpUpdateMailSubject", true);
                 string body = currentPage.GetPropertyValue<string>("skyMailChimpUpdateMailBody", true);
+                string fromEmail = currentPage.GetPropertyValue<string>("skyMailChimpUpdateFromEmail", true);
+                string fromDisplayName = currentPage.GetPropertyValue<string>("skyMailChimpUpdateFromDisplayName", true);
 
                 // set default values if non found
                 subject = string.IsNullOrWhiteSpace(subject) ? "Rediger din nyhedsbrevsprofil" : subject;
@@ -164,6 +166,11 @@ namespace Skybrud.Umbraco.MailChimp.Controllers.Api
 
                 // send mail
                 MailMessage msg = new MailMessage();
+
+                if (!string.IsNullOrWhiteSpace(fromEmail))
+                {
+                    msg.From = new MailAddress(fromEmail, fromDisplayName);
+                }
                 msg.To.Add(subscriber.Email);
                 msg.Subject = subject;
                 msg.BodyEncoding = Encoding.UTF8;
