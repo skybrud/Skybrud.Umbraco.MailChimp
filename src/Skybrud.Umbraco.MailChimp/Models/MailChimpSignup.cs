@@ -13,9 +13,6 @@ namespace Skybrud.Umbraco.MailChimp.Models
     public class MailChimpSignup
     {
         #region Properties
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
         [JsonProperty("email")]
         public string Email { get; set; }
 
