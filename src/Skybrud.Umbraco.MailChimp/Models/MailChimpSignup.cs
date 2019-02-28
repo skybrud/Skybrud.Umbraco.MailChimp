@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using ServiceStack.Text;
 using Skybrud.Umbraco.MailChimp.Extensions;
 using Skybrud.Umbraco.MailChimp.Integrations;
-using Umbraco.Core.Logging;
 
 namespace Skybrud.Umbraco.MailChimp.Models
 {
@@ -46,8 +45,6 @@ namespace Skybrud.Umbraco.MailChimp.Models
         public void AddConfig(MailChimpOptions config)
         {
             Config = config;
-
-            LogHelper.Info<MailChimpSignup>("Object Initiatet: " + this.SerializeToString());
         }
 
         /// <summary>
@@ -75,21 +72,14 @@ namespace Skybrud.Umbraco.MailChimp.Models
                     Email = signUpModel.Email
                 };
 
-                LogHelper.Info<MailChimpSignup>(signUpModel.Config.DoubleOptIn.ToString);
-
                 // subscribe @MailChimp
                 EmailParameter r = mcManager.Subscribe(signUpModel.ListId, EmailP, signUpModel.Config.CustomMergeVar,
                     signUpModel.Config.EmailType, signUpModel.Config.DoubleOptIn, signUpModel.ExistingUser);
-
-
-                LogHelper.Info<MailChimpSignup>("Subscriber saved/updated: " + r.SerializeToString());
 
                 return r;
             }
             catch (Exception ex)
             {
-                LogHelper.Error<MailChimpSignup>("SaveUpdateSubscriberError", ex);
-
                 return new EmailParameter();
             }
 
