@@ -3,8 +3,8 @@
   "description": "Small NuGet package to help your customers subscribe/update their MailChimp subscriptions.",
   "company": "Skybrud.dk",
   "product": "Skybrud.MailChimp",
-  "copyright": "Copyright ©  2017",
-  "version": "0.5.6.0",
-  "informationalVersion": null,
-  "fileVersion": "0.5.6.0"
+  "copyright": "Copyright © 2019",
+  "version": "0.5.7.0",
+  "informationalVersion": "0.5.7",
+  "fileVersion": "0.5.7.0"
 }
