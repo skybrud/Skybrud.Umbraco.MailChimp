@@ -278,6 +278,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Api\SkyMailChimpController.cs" />
+    <Compile Include="Exceptions\MailChimpException.cs" />
+    <Compile Include="Exceptions\MailChimpSignupException.cs" />
     <Compile Include="Extensions\MailChimpExtensions.cs" />
     <Compile Include="Integrations\CustomMergeVar.cs" />
     <Compile Include="Integrations\SkyMailChimpRepository.cs" />

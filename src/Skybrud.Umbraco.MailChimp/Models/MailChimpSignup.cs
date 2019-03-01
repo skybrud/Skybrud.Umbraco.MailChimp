@@ -4,6 +4,7 @@ using MailChimp;
 using MailChimp.Helper;
 using Newtonsoft.Json;
 using ServiceStack.Text;
+using Skybrud.Umbraco.MailChimp.Exceptions;
 using Skybrud.Umbraco.MailChimp.Extensions;
 using Skybrud.Umbraco.MailChimp.Integrations;
 
@@ -51,14 +52,11 @@ namespace Skybrud.Umbraco.MailChimp.Models
         /// Saves or Updates MailChimp subscriber
         /// </summary>
         /// <returns>EmailParameter</returns>
-        public EmailParameter SaveUpdateSubscriber(MailChimpSignup signUpModel)
-        {
-            try
-            {
-                if (signUpModel.Config == null)
-                {
-                    throw new Exception("Config-Options missing");
-                }
+        public EmailParameter SaveUpdateSubscriber(MailChimpSignup signUpModel) {
+
+            if (signUpModel.Config == null) throw new Exception("Config-Options missing");
+
+            try {
 
                 // add groupings if possible
                 signUpModel.Config.CustomMergeVar.Groupings = signUpModel.GetGroupings();
@@ -67,8 +65,7 @@ namespace Skybrud.Umbraco.MailChimp.Models
                 MailChimpManager mcManager = new MailChimpManager(SkyMailChimpRepository.GetApiKey(signUpModel.ContextId));
 
                 // add EmailParamteter
-                EmailParameter EmailP = new EmailParameter()
-                {
+                EmailParameter EmailP = new EmailParameter {
                     Email = signUpModel.Email
                 };
 
@@ -77,10 +74,11 @@ namespace Skybrud.Umbraco.MailChimp.Models
                     signUpModel.Config.EmailType, signUpModel.Config.DoubleOptIn, signUpModel.ExistingUser);
 
                 return r;
-            }
-            catch (Exception ex)
-            {
-                return new EmailParameter();
+
+            } catch (Exception ex) {
+                
+                throw new MailChimpSignupException(signUpModel, ex);
+
             }
 
         }
